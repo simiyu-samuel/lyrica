@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyrica - Find Every Word</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <main class="app-shell">
+        <nav class="topbar" aria-label="Main navigation">
+            <a class="brand" href="/" aria-label="Lyrica home">
+                <span class="brand-mark">
+                    <i></i><i></i><i></i><i></i>
+                </span>
+                <span>Lyrica</span>
+            </a>
+            <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle color theme">
+                <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"></path>
+                </svg>
+            </button>
+        </nav>
+
+        <section class="hero" id="hero">
+            <p class="eyebrow">Your soundtrack, decoded</p>
+            <h1>Find every <em>word.</em></h1>
+            <p class="hero-copy">Search for the lyrics hiding inside your favorite song.</p>
+
+            <form class="search-card" id="searchForm">
+                <div class="field">
+                    <label for="songTitle">Song title</label>
+                    <input id="songTitle" name="title" type="text" placeholder="e.g. Bohemian Rhapsody" autocomplete="off" required>
+                </div>
+                <div class="divider"></div>
+                <div class="field">
+                    <label for="artistName">Artist</label>
+                    <input id="artistName" name="artist" type="text" placeholder="e.g. Queen" autocomplete="off" required>
+                </div>
+                <button class="search-button" id="searchButton" type="submit" aria-label="Search lyrics">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="11" cy="11" r="6"></circle>
+                        <path d="M16 16l4 4"></path>
+                    </svg>
+                </button>
+            </form>
+        </section>
+
+        <section class="status" id="status" aria-live="polite" hidden>
+            <div class="loader" aria-hidden="true">
+                <span></span><span></span><span></span><span></span>
+            </div>
+            <p>Finding the words...</p>
+        </section>
+
+        <section class="error-card" id="errorCard" role="alert" hidden>
+            <span class="error-icon">!</span>
+            <div>
+                <strong>Couldn't find that song</strong>
+                <p id="errorMessage"></p>
+            </div>
+            <button id="closeError" type="button" aria-label="Dismiss error">&times;</button>
+        </section>
+
+        <article class="lyrics-card" id="lyricsCard" hidden>
+            <header class="lyrics-header">
+                <div>
+                    <p class="result-label">Now displaying</p>
+                    <h2 id="resultTitle"></h2>
+                    <p id="resultArtist"></p>
+                </div>
+                <button class="copy-button" id="copyButton" type="button">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="8" y="8" width="11" height="11" rx="2"></rect>
+                        <path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"></path>
+                    </svg>
+                    <span>Copy</span>
+                </button>
+            </header>
+            <div class="lyrics" id="lyrics"></div>
+        </article>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
